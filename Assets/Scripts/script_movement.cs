@@ -55,19 +55,6 @@ public class script_movement : MonoBehaviour
     {
         //velocity = Vector3.zero;
 
-
-
-        //if (characterController.isGrounded)
-        //    velocity.y = 0.0f;
-
-
-        if (characterController.isGrounded)
-        {
-            velocity = Vector3.zero;
-            if(hasJumped)
-                   velocity.y += jumpForce*Time.deltaTime;
-        }
-        velocity.y += gravity*Time.deltaTime;
         cameraForward = cameraRotator.transform.forward;
         cameraRight = cameraRotator.transform.right;
         cameraForward = cameraForward.normalized;
@@ -75,6 +62,19 @@ public class script_movement : MonoBehaviour
         direction = (cameraRight * movementDirection.x) + (cameraForward * movementDirection.y);
         direction.y = 0.0f;
         velocity = direction * movementSpeed;
+
+        //if (characterController.isGrounded)
+        //    velocity.y = 0.0f;
+
+
+        if (characterController.isGrounded)
+        {
+            //velocity = Vector3.zero;
+            if(hasJumped)
+                   velocity.y += jumpForce*Time.deltaTime;
+        }
+        velocity.y += gravity;
+
         characterController.Move(velocity*Time.deltaTime);
 
         UnityEngine.Debug.Log(velocity);
