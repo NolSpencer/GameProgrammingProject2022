@@ -447,11 +447,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899e58ade7d27764fad4b57cb066b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPitch: 70
+  maxPitch: 80
   minPitch: 0
   movementSpeed: 20
   gravity: -9.8
-  jumpForce: 50
+  jumpForce: 500
 --- !u!143 &1410102759
 CharacterController:
   m_ObjectHideFlags: 0

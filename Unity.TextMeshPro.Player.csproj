@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C079A510-DE08-A9C9-E68D-26BE5846099B}</ProjectGuid>
+    <ProjectGuid>{4E6EBD20-0860-FAE5-F62A-1D6B498EED37}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Unity.TextMeshPro</AssemblyName>
@@ -651,7 +651,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{09FDC186-E49D-5F25-6346-B42EBDEEBEF0}</Project>
+      <Project>{86582FE7-9235-845C-AED3-83D74248D200}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
   </ItemGroup>

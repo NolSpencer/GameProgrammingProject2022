@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{768EE0D7-5C3B-5C6D-CBF6-A5A7A5058638}</ProjectGuid>
+    <ProjectGuid>{8C2DDF19-0161-A109-53D9-278FE45B8503}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\InputActions\PlayerControls.cs" />
-    <Compile Include="Assets\Scripts\script_cameraRotator.cs" />
     <Compile Include="Assets\Scripts\script_movement.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -601,60 +600,60 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.Timeline.Editor.csproj">
-      <Project>{9F88CDBF-DD85-915E-DC87-443812DDD96D}</Project>
+      <Project>{E6237C02-8A78-DB86-6C9A-5F0611438095}</Project>
       <Name>Unity.Timeline.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64.csproj">
-      <Project>{E91AD54C-41BA-A867-0430-1EE3FE505AD1}</Project>
+      <Project>{C87090C2-9661-D3C4-A3E3-19F9E6FD347C}</Project>
       <Name>Unity.Toolchain.Win-x86_64-Linux-x86_64</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VSCode.Editor.csproj">
-      <Project>{CEE893B4-6E8F-4310-22F6-BB576AE3CC97}</Project>
+      <Project>{E896BE7C-2820-B1CC-AD4C-7725B40BD713}</Project>
       <Name>Unity.VSCode.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{FADF0B5F-087E-69AF-3F7D-593382AD8843}</Project>
+      <Name>Unity.InputSystem</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
-      <Project>{1574AA6F-7E21-0AE1-629F-62FE3CE980DF}</Project>
+      <Project>{68F74820-D697-3A61-E5AC-C882EEF001F7}</Project>
       <Name>Unity.TextMeshPro.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.csproj">
-      <Project>{62E4A918-A71D-D360-A956-1290542FDB05}</Project>
+      <Project>{82A06D87-95D6-F648-C717-0D96F400C2AE}</Project>
       <Name>UnityEngine.UI</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.csproj">
-      <Project>{96671E19-E65C-5924-918D-6B0849BA9469}</Project>
+      <Project>{096B95F3-56EB-3881-1E29-EE7573B0F80D}</Project>
       <Name>Unity.Timeline</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Rider.Editor.csproj">
-      <Project>{4EF6D4A4-FBC3-6CB2-6A20-F314F6F07992}</Project>
+      <Project>{3E319F09-C490-575E-FF3B-A93140371C89}</Project>
       <Name>Unity.Rider.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
-      <Project>{AA17562D-D4A7-2CCA-B786-4ADB90FF0018}</Project>
+      <Project>{937A0E7B-F31B-4455-C33F-FF70FC007927}</Project>
       <Name>Unity.Sysroot.Linux_x86_64</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
-      <Project>{FE00004E-3DF3-048E-D148-A38489ECA201}</Project>
+      <Project>{9684090B-A22D-D300-F070-39CA2434D274}</Project>
       <Name>Unity.VisualStudio.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
-      <Project>{30AC6A1B-88EB-306E-9D08-216F74BF80CF}</Project>
+      <Project>{4BEA0E50-EE04-1235-BDCE-6432FD366B0E}</Project>
       <Name>Unity.SysrootPackage.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.csproj">
-      <Project>{0832A7E1-892B-B203-3225-ED9FE9660604}</Project>
+      <Project>{1337398D-1617-FB48-51F7-DA1B74BBFA65}</Project>
       <Name>Unity.TextMeshPro</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.PlasticSCM.Editor.csproj">
-      <Project>{E9EE922D-5C52-B59D-8B8C-74A189089CE2}</Project>
+      <Project>{94ECB79D-0E3A-C6AA-0B84-B75B0DC58C20}</Project>
       <Name>Unity.PlasticSCM.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="UnityEditor.UI.csproj">
-      <Project>{0BA2EF8C-3C3E-DD68-59C7-FAC297B2DFD9}</Project>
+      <Project>{8E04F2A7-2877-76B1-0E43-C537071FCCF4}</Project>
       <Name>UnityEditor.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.InputSystem.csproj">
-      <Project>{CD2FEEDF-905E-3B76-A658-3FD1CE08A587}</Project>
-      <Name>Unity.InputSystem</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6BE7EC99-CE12-188E-0466-76181EA190CC}</ProjectGuid>
+    <ProjectGuid>{AEC32189-78B9-C855-05D0-AB8448915CCE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\InputActions\PlayerControls.cs" />
-    <Compile Include="Assets\Scripts\script_cameraRotator.cs" />
     <Compile Include="Assets\Scripts\script_movement.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -618,21 +617,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.InputSystem.Player.csproj">
+      <Project>{AF940B95-2DF3-498F-24F2-89D7AD045E5C}</Project>
+      <Name>Unity.InputSystem.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityEngine.UI.Player.csproj">
-      <Project>{09FDC186-E49D-5F25-6346-B42EBDEEBEF0}</Project>
+      <Project>{86582FE7-9235-845C-AED3-83D74248D200}</Project>
       <Name>UnityEngine.UI.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Timeline.Player.csproj">
-      <Project>{9928B090-3BAC-8D2D-550C-94BFDA5506B8}</Project>
+      <Project>{7C962711-D2E4-417F-39AE-00FDB6EEB351}</Project>
       <Name>Unity.Timeline.Player</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
-      <Project>{C079A510-DE08-A9C9-E68D-26BE5846099B}</Project>
+      <Project>{4E6EBD20-0860-FAE5-F62A-1D6B498EED37}</Project>
       <Name>Unity.TextMeshPro.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="Unity.InputSystem.Player.csproj">
-      <Project>{61E4BA45-D6F8-6653-F589-171CCF27FBEC}</Project>
-      <Name>Unity.InputSystem.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

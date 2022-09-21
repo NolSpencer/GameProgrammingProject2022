@@ -47,31 +47,34 @@ public class script_movement : MonoBehaviour
     {
         controls.player.Movement.performed += Movement;
         controls.player.CameraOrbit.performed += CameraOrbit;
-        controls.player.Jump.started += JumpPressed;
+        controls.player.Jump.performed += JumpPressed;
         controls.player.Jump.canceled += JumpReleased;
     }
     // Update is called once per frame
     void Update()
     {
         //velocity = Vector3.zero;
-        cameraForward = cameraRotator.transform.forward;
-        cameraRight = cameraRotator.transform.right;
-        cameraForward = cameraForward.normalized;
-        cameraRight = cameraRight.normalized;
-        direction = (cameraRight*movementDirection.x) + (cameraForward*movementDirection.y);
-        direction.y = 0.0f;
-        velocity = direction * movementSpeed;
+
 
 
         //if (characterController.isGrounded)
         //    velocity.y = 0.0f;
 
-        
 
-        //if (hasJumped && characterController.isGrounded)
-        //        velocity.y += jumpForce*Time.deltaTime;
-        
+        if (characterController.isGrounded)
+        {
+            velocity = Vector3.zero;
+            if(hasJumped)
+                   velocity.y += jumpForce*Time.deltaTime;
+        }
         velocity.y += gravity*Time.deltaTime;
+        cameraForward = cameraRotator.transform.forward;
+        cameraRight = cameraRotator.transform.right;
+        cameraForward = cameraForward.normalized;
+        cameraRight = cameraRight.normalized;
+        direction = (cameraRight * movementDirection.x) + (cameraForward * movementDirection.y);
+        direction.y = 0.0f;
+        velocity = direction * movementSpeed;
         characterController.Move(velocity*Time.deltaTime);
 
         UnityEngine.Debug.Log(velocity);
@@ -96,7 +99,7 @@ public class script_movement : MonoBehaviour
     }
     void JumpReleased(InputAction.CallbackContext ctx)
     {
-        hasJumped = ctx.ReadValueAsButton();
+       // hasJumped = ctx.ReadValueAsButton();
     }
 
 }
