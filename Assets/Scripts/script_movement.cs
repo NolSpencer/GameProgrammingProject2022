@@ -10,6 +10,10 @@ public class script_movement : MonoBehaviour
     private float maxPitch, minPitch;
 
     [SerializeField]
+    [Range(0f, 4f)] 
+    private float mouseSensitivity = 1.0f;
+
+    [SerializeField]
     private float movementSpeed, gravity, jumpForce;
 
     private PlayerControls controls;
@@ -88,8 +92,8 @@ public class script_movement : MonoBehaviour
     {
         Vector2 camDelta = ctx.ReadValue<Vector2>();
         cameraRot = cameraRotator.transform.localRotation.eulerAngles;
-        cameraRot.y += camDelta.x;
-        cameraRot.x += camDelta.y;
+        cameraRot.y += camDelta.x*mouseSensitivity;
+        cameraRot.x += camDelta.y*mouseSensitivity;
         cameraRot.x = Mathf.Clamp(cameraRot.x, minPitch, maxPitch);
         cameraRotator.transform.localEulerAngles = cameraRot;
     }
