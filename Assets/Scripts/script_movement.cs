@@ -37,13 +37,19 @@ public class script_movement : MonoBehaviour
     private bool jumpPressed = false;
 
     private bool hasJumped = false;
+
+    private bool hasFired = false;
+
+    private bool hasHitSomething = false;
+
+    private RaycastHit hit;
     private void Awake()
     {
         controls = new PlayerControls();
         characterController = GetComponent<CharacterController>();
-        cameraRotator = transform.GetChild(2).gameObject;
+        cameraRotator = transform.GetChild(1).gameObject;
         Capsule = transform.GetChild(0).gameObject;
-        Cube = transform.GetChild(1).gameObject;
+        Cube = transform.GetChild(0).GetChild(0).gameObject;
     }
     private void OnEnable()
     {
@@ -59,8 +65,10 @@ public class script_movement : MonoBehaviour
     {
         controls.player.Movement.performed += Movement;
         controls.player.CameraOrbit.performed += CameraOrbit;
-        controls.player.Jump.performed += JumpButton;
+        controls.player.Jump.started += JumpButton;
         controls.player.Jump.canceled += JumpButton;
+        controls.player.Fire.started += Fire;
+        controls.player.Fire.canceled += Fire;
     }
     // Update is called once per frame
     void Update()
@@ -77,14 +85,15 @@ public class script_movement : MonoBehaviour
         direction.Normalize();
         
         velocity = Vector3.Lerp(velocity, direction * movementSpeed, .2f);
-        //if (movementDirection.x > 0.0f || movementDirection.y > 0.0f)
-        //{
-            //Vector3 playerRot = cameraRotator.transform.eulerAngles;
-            //playerRot.y = 0.0f;
-       //     Capsule.transform.rotation = cameraRotator.transform.rotation;
-       //     Cube.transform.rotation = cameraRotator.transform.rotation;
+        if (movementDirection.x > 0.0f || movementDirection.y > 0.0f)
+        {
+            Vector3 playerRot = cameraRotator.transform.eulerAngles;
+            playerRot.x = 0.0f;
+            playerRot.z = 0.0f;
+            Capsule.transform.rotation = Quaternion.Euler(playerRot);
+            //Cube.transform.rotation = Quaternion.Euler(playerRot);
 
-       // }
+        }
 
         if (characterController.isGrounded)
         {
@@ -106,8 +115,6 @@ public class script_movement : MonoBehaviour
 
         characterController.Move(velocity*Time.deltaTime);
 
-
-        UnityEngine.Debug.Log(velocity);
     }
     void Movement(InputAction.CallbackContext ctx)
     {
@@ -117,14 +124,24 @@ public class script_movement : MonoBehaviour
     void CameraOrbit(InputAction.CallbackContext ctx)
     {
         Vector2 camDelta = ctx.ReadValue<Vector2>();
-        cameraRot = cameraRotator.transform.localRotation.eulerAngles;
+        cameraRot = cameraRotator.transform.eulerAngles;
         cameraRot.y += camDelta.x*mouseSensitivity;
         cameraRot.x += camDelta.y*mouseSensitivity;
         cameraRot.x = Mathf.Clamp(cameraRot.x, minPitch, maxPitch);
-        cameraRotator.transform.localEulerAngles = cameraRot;
+        cameraRotator.transform.rotation = Quaternion.Euler(cameraRot);
+        //UnityEngine.Debug.Log(cameraRotator.transform.rotation);
     }
     void JumpButton(InputAction.CallbackContext ctx)
     {
         jumpPressed = ctx.ReadValueAsButton();
+    }
+    void Fire(InputAction.CallbackContext ctx)
+    {
+        hasFired = ctx.ReadValueAsButton();
+        if(!hasFired)
+        {
+           hasHitSomething = Physics.Raycast(transform.position, cameraRotator.transform.forward, out hit, 200.0f, 0);
+            Debug.DrawRay(transform.position, cameraRotator.transform.forward);
+        }
     }
 }
