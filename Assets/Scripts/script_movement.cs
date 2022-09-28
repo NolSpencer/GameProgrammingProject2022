@@ -90,7 +90,7 @@ public class script_movement : MonoBehaviour
             Vector3 playerRot = cameraRotator.transform.eulerAngles;
             playerRot.x = 0.0f;
             playerRot.z = 0.0f;
-            Capsule.transform.rotation = Quaternion.Euler(playerRot);
+            Capsule.transform.rotation = Quaternion.Lerp(Capsule.transform.rotation, Quaternion.Euler(playerRot),.4f);
             //Cube.transform.rotation = Quaternion.Euler(playerRot);
 
         }
@@ -141,7 +141,7 @@ public class script_movement : MonoBehaviour
         if(!hasFired)
         {
            hasHitSomething = Physics.Raycast(transform.position, cameraRotator.transform.forward, out hit, 200.0f, 0);
-            Debug.DrawRay(transform.position, cameraRotator.transform.forward);
+           Debug.DrawRay(transform.position, cameraRotator.transform.forward);
         }
     }
 }
