@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShopMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""c96dbe1f-7b0d-41ec-ab86-af4044859286"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,6 +205,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aa99053b-3785-4f2f-9af2-ba7c921cff48"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShopMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -208,6 +228,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_player_CameraOrbit = m_player.FindAction("CameraOrbit", throwIfNotFound: true);
         m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
         m_player_Fire = m_player.FindAction("Fire", throwIfNotFound: true);
+        m_player_ShopMenu = m_player.FindAction("ShopMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -271,6 +292,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_player_CameraOrbit;
     private readonly InputAction m_player_Jump;
     private readonly InputAction m_player_Fire;
+    private readonly InputAction m_player_ShopMenu;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -279,6 +301,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @CameraOrbit => m_Wrapper.m_player_CameraOrbit;
         public InputAction @Jump => m_Wrapper.m_player_Jump;
         public InputAction @Fire => m_Wrapper.m_player_Fire;
+        public InputAction @ShopMenu => m_Wrapper.m_player_ShopMenu;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -300,6 +323,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @ShopMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShopMenu;
+                @ShopMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShopMenu;
+                @ShopMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShopMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -316,6 +342,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @ShopMenu.started += instance.OnShopMenu;
+                @ShopMenu.performed += instance.OnShopMenu;
+                @ShopMenu.canceled += instance.OnShopMenu;
             }
         }
     }
@@ -326,5 +355,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnCameraOrbit(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnShopMenu(InputAction.CallbackContext context);
     }
 }
