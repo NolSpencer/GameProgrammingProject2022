@@ -3691,7 +3691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41ca177f06698643bfa4a5470d01aba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShopMenu: {fileID: 1472643785}
+  shopMenu: {fileID: 0}
 --- !u!1001 &2069026980
 PrefabInstance:
   m_ObjectHideFlags: 0
