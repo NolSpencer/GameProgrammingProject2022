@@ -8,7 +8,6 @@ public class MenuManager : MonoBehaviour
 {
     public GameObject shopMenu;
     PlayerControls playerControls;
-    bool ShopButtonPressed = false;
     private void Awake()
     {
         playerControls = new PlayerControls();
@@ -24,21 +23,15 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerControls.player.ShopMenu.started += ShopButton;
-        playerControls.player.ShopMenu.canceled += ShopButton;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (ShopButtonPressed)
+        if (Keyboard.current.tabKey.wasPressedThisFrame)
         {
             shopMenu.gameObject.SetActive(!shopMenu.gameObject.activeSelf);
         }
     }
 
-    void ShopButton(InputAction.CallbackContext ctx)
-    {
-        ShopButtonPressed = ctx.ReadValueAsButton();
-    }
 }
