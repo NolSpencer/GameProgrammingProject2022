@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
-    public PlayerHealth playerHealth;
+    private PlayerHealth playerHealth;
     public GameObject enemy;
     public float spawnTime = 3f;
     public Transform[] spawnPoints;
@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         InvokeRepeating("Spawn", spawnTime, spawnTime);
     }
 
