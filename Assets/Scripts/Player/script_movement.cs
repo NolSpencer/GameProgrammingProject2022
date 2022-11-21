@@ -20,7 +20,7 @@ public class script_movement : MonoBehaviour
 
     private GameObject cameraRotator;
 
-    private GameObject Capsule, Cube;
+    private GameObject Capsule, Cube, cam;
 
     private CharacterController characterController;
 
@@ -42,14 +42,27 @@ public class script_movement : MonoBehaviour
 
     private bool hasHitSomething = false;
 
+    private float rayLength;
+    
+    private RaycastHit camRayHit;
+
+    private Vector3 camInitialPos;
+
+    private int rayLayer;
+
     private RaycastHit hit;
     private void Awake()
     {
         controls = new PlayerControls();
         characterController = GetComponent<CharacterController>();
         cameraRotator = transform.GetChild(1).gameObject;
+        cam = cameraRotator.transform.GetChild(0).gameObject;
         Capsule = transform.GetChild(0).gameObject;
         Cube = transform.GetChild(0).GetChild(0).gameObject;
+        rayLength = cam.transform.localPosition.z;
+        rayLayer = LayerMask.GetMask("CamRay");
+        camInitialPos = cam.transform.localPosition;
+        //minPitch -= 360.0f;
     }
     private void OnEnable()
     {
@@ -85,16 +98,49 @@ public class script_movement : MonoBehaviour
         direction.Normalize();
         
         velocity = Vector3.Lerp(velocity, direction * movementSpeed, .2f);
-        if (movementDirection.x > 0.0f || movementDirection.y > 0.0f)
+        if (movementDirection.y > 0.0f)
         {
             Vector3 playerRot = cameraRotator.transform.eulerAngles;
             playerRot.x = 0.0f;
             playerRot.z = 0.0f;
+            //float forwardOrBack = movementDirection.y > 0.0f ? 1.0f : -1.0f;
             Capsule.transform.rotation = Quaternion.Lerp(Capsule.transform.rotation, Quaternion.Euler(playerRot),.4f);
             //Cube.transform.rotation = Quaternion.Euler(playerRot);
 
         }
+        if (movementDirection.y < 0.0f)
+        {
+            Vector3 playerRot = cameraRotator.transform.eulerAngles;
+            playerRot.x = 0.0f;
+            playerRot.z = 0.0f;
+            playerRot.y -= 180.0f;
+            //float forwardOrBack = movementDirection.y > 0.0f ? 1.0f : -1.0f;
+            Capsule.transform.rotation = Quaternion.Lerp(Capsule.transform.rotation, Quaternion.Euler(playerRot), .4f);
+            //Cube.transform.rotation = Quaternion.Euler(playerRot);
 
+        }
+        if (movementDirection.x > 0.0f)
+        {
+            Vector3 playerRot = cameraRotator.transform.eulerAngles;
+            playerRot.x = 0.0f;
+            playerRot.z = 0.0f;
+            playerRot.y += 90.0f;
+            //float forwardOrBack = movementDirection.y > 0.0f ? 1.0f : -1.0f;
+            Capsule.transform.rotation = Quaternion.Lerp(Capsule.transform.rotation, Quaternion.Euler(playerRot), .4f);
+            //Cube.transform.rotation = Quaternion.Euler(playerRot);
+
+        }
+        if (movementDirection.x < 0.0f)
+        {
+            Vector3 playerRot = cameraRotator.transform.eulerAngles;
+            playerRot.x = 0.0f;
+            playerRot.z = 0.0f;
+            playerRot.y -= 90.0f;
+            //float forwardOrBack = movementDirection.y > 0.0f ? 1.0f : -1.0f;
+            Capsule.transform.rotation = Quaternion.Lerp(Capsule.transform.rotation, Quaternion.Euler(playerRot), .4f);
+            //Cube.transform.rotation = Quaternion.Euler(playerRot);
+
+        }
         if (characterController.isGrounded)
         {
             yVelocity = groundedGravity;
@@ -115,6 +161,8 @@ public class script_movement : MonoBehaviour
 
         characterController.Move(velocity*Time.deltaTime);
 
+        cameraCollision();
+
     }
     void Movement(InputAction.CallbackContext ctx)
     {
@@ -127,10 +175,56 @@ public class script_movement : MonoBehaviour
         cameraRot = cameraRotator.transform.eulerAngles;
         cameraRot.y += camDelta.x*mouseSensitivity;
         cameraRot.x += camDelta.y*mouseSensitivity;
-        cameraRot.x = Mathf.Clamp(cameraRot.x, minPitch, maxPitch);
+        if(cameraRot.x>=270.0f)
+        {
+            cameraRot.x -= 360.0f;
+        }
+        if(cameraRot.x >= maxPitch)
+        {
+            cameraRot.x = maxPitch;
+        }
+        if(cameraRot.x <= minPitch)
+        {
+            cameraRot.x = minPitch;
+        }
         cameraRotator.transform.rotation = Quaternion.Euler(cameraRot);
         //UnityEngine.Debug.Log(cameraRotator.transform.rotation);
     }
+    void cameraCollision()
+    {
+        Ray camRay = new Ray(cameraRotator.transform.position, (cameraRotator.transform.forward * -1.0f));
+        Vector3 camRayStart = cameraRotator.transform.position;
+        //camRayStart.y += 5.0f;
+        //UnityEngine.Debug.Log(cam.transform.localPosition);
+        UnityEngine.Debug.DrawRay(camRayStart, cameraRotator.transform.forward * -1.0f, Color.red);
+        float distanceFromPlayer = rayLength;
+        Vector3 temp = cam.transform.localPosition;
+        if (Physics.Raycast(camRay, out camRayHit, Mathf.Abs(rayLength), rayLayer))
+        {
+            temp = camRayHit.point;
+            //UnityEngine.Debug.Log(camRayHit.point);
+        }
+        else
+        {
+            temp = camRay.GetPoint(Mathf.Abs(rayLength));
+        }
+        //UnityEngine.Debug.Log(camRayHit.point);
+        //else
+        //{
+        //    temp = transform.TransformPoint(camInitialPos);
+        //}
+        //if(cam.transform.localPosition.z < rayLength)
+        //{
+        //    distanceFromPlayer = rayLength;
+        //}
+
+        Vector3 offsetLocal = Vector3.zero;
+        offsetLocal.y = 2.0f;
+
+        cam.transform.position = Vector3.Lerp(cam.transform.position, temp, 0.4f);
+        cam.transform.localPosition += offsetLocal;
+    }
+
     void JumpButton(InputAction.CallbackContext ctx)
     {
         jumpPressed = ctx.ReadValueAsButton();
