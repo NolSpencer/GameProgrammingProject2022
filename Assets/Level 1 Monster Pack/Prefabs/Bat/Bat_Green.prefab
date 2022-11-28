@@ -1168,9 +1168,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013189255144}
   - component: {fileID: 95000012289870092}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat_Green
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
