@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
-        anim.SetTrigger("Dead");// should trigger death animation# DOES NOT WORK
+        anim.SetBool("Death", isDead);// should trigger death animation# DOES NOT WORK
         Destroy(gameObject, 3f);//deletes enemy corpse after 3 seconds# WORKS
     }
 }
