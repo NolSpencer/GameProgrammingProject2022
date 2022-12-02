@@ -12,6 +12,7 @@ public class ShopManager : MonoBehaviour
     public GameObject[] shopPanelsGO;
     public ShopTemplate[] shopPanels;
     public Button[] myPurchaseBtns;
+    public PlayerHealth playerHealth;
 
     private void Start()
     {

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
-    public int currentHealth;
+    public float startingHealth = 100;
+    public float currentHealth;
     Animator anim;
     bool isDead;
 
@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = startingHealth;
     }
-    public void TakeDamage(int damage, Vector3 hitPoint)
+    public void TakeDamage(float damage, Vector3 hitPoint)
     {
         // If the enemy is dead
         if (isDead)

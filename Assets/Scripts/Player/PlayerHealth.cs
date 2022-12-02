@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public Image _healthbar;
+    public Image _armorbar;
+    public float startingHealth = 100;
+    public float currentHealth;
+    public float currentArmor = 0;
 
-    public int startingHealth = 100;
-    public int currentHealth;
+    public Text armorTextUI;
+    public Text healthTextUI;
     script_movement movement;
     Animator anim;
     bool isDead;
@@ -18,11 +25,56 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         movement = GetComponent<script_movement>();
     }
-
-    public void TakeDamage(int amount)
+    private void Update()
     {
+        HealthUIChange(currentHealth);
+        ArmorUIChange(currentArmor);
+    }
+    void AddArmor(float amount)
+    {
+        if(currentArmor + amount > 100.0f)
+        {
+            currentArmor = 100.0f;
+        }
+        else
+        {
+            currentArmor += amount;
+        }
+        
+    }
 
-        currentHealth -= amount;
+    void ArmorUIChange(float armorValue)
+    {
+        _armorbar.fillAmount = armorValue;
+        armorTextUI.text = armorValue.ToString();
+    }
+    //updates health UI
+    void HealthUIChange(float healthValue)
+    {
+        _healthbar.fillAmount = healthValue;
+        healthTextUI.text = healthValue.ToString();
+    }
+    public void TakeDamage(float amount)
+    {
+        //This is the damage that will be delt to the players health after taking away from the armor
+        float carryoverDamage;
+        if (currentArmor > 0)
+        {
+            if (currentArmor - amount < 0)
+            {
+                carryoverDamage = System.Math.Abs(currentArmor - amount);
+                currentArmor = 0;
+                currentHealth -= amount;
+            }
+            else
+            {
+                currentArmor -= amount;
+            }
+        }
+        else
+        {
+            currentHealth -= amount;
+        }
 
         if (currentHealth <= 0 && !isDead)
         {
