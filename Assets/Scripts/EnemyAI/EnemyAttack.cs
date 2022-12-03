@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public int attackDamage = 10;               // The amount of health taken away per attack.
+    public float attackDamage = 10;               // The amount of health taken away per attack.
 
 
     Animator anime;                              // Reference to the animator component.
