@@ -1928,6 +1928,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 41aba79095f97cd43927b0a4c906b435, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4ad967689295ba4eaf8baeaebc8721b, type: 3}
+--- !u!114 &318873390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2099174123526248704, guid: ddaa26dc51f6db44fb273577d4f0e905,
+    type: 3}
+  m_PrefabInstance: {fileID: 484500198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &324055041
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,6 +2784,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Armor bar
       objectReference: {fileID: 0}
+    - target: {fileID: 2099174123423218068, guid: ddaa26dc51f6db44fb273577d4f0e905,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2099174123423218068, guid: ddaa26dc51f6db44fb273577d4f0e905,
+        type: 3}
+      propertyPath: m_FillMethod
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2099174123423218069, guid: ddaa26dc51f6db44fb273577d4f0e905,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2912,6 +2934,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2099174124110514111, guid: ddaa26dc51f6db44fb273577d4f0e905,
+        type: 3}
+      propertyPath: m_Name
+      value: Armor
+      objectReference: {fileID: 0}
     - target: {fileID: 2099174124110514113, guid: ddaa26dc51f6db44fb273577d4f0e905,
         type: 3}
       propertyPath: m_Text
@@ -2935,6 +2962,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 484500198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &484500201 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2099174123423218068, guid: ddaa26dc51f6db44fb273577d4f0e905,
+    type: 3}
+  m_PrefabInstance: {fileID: 484500198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &494573657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6458,7 +6497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -365.85962, y: -53.764343}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903265179
@@ -6477,8 +6516,8 @@ MonoBehaviour:
   coinUI: {fileID: 391122492}
   shopItemsSO:
   - {fileID: 11400000, guid: 1ac70c82eebd4ad40b8091130ffa2615, type: 2}
-  - {fileID: 11400000, guid: 99ec2ebc7334dd9499c1bb10f20abf34, type: 2}
   - {fileID: 11400000, guid: 349ecc545fac39b469c1be64af0aa4b7, type: 2}
+  - {fileID: 11400000, guid: 99ec2ebc7334dd9499c1bb10f20abf34, type: 2}
   - {fileID: 11400000, guid: f437d788172709c45b838551f2d1552d, type: 2}
   shopPanelsGO:
   - {fileID: 2133230747}
@@ -6522,6 +6561,7 @@ MonoBehaviour:
   - {fileID: 611966499}
   - {fileID: 1807548577}
   - {fileID: 736587425}
+  playerHealth: {fileID: 1760205628}
 --- !u!114 &903265180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11465,8 +11505,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthbar: {fileID: 1166431616}
+  _armorbar: {fileID: 484500201}
   startingHealth: 100
   currentHealth: 0
+  currentArmor: 0
+  armorTextUI: {fileID: 318873390}
+  healthTextUI: {fileID: 1108231818}
 --- !u!1 &1768628718
 GameObject:
   m_ObjectHideFlags: 0
@@ -12228,7 +12272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Header
+  m_text: Shop
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

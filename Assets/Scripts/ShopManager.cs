@@ -55,6 +55,20 @@ public class ShopManager : MonoBehaviour
             coinUI.text = "Coins: " + coins.ToString();
             CheckPurchaseable();
             //Unlock Item here
+            switch (btnNo)
+            {
+                case 0:
+                    playerHealth.AddArmor(25.0f);
+                    break;
+                case 1:
+                    playerHealth.AddArmor(50.0f);
+                    break;
+                case 2:
+                    playerHealth.AddArmor(100.0f);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

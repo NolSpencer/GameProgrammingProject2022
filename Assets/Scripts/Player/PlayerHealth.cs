@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         HealthUIChange(currentHealth);
         ArmorUIChange(currentArmor);
     }
-    void AddArmor(float amount)
+    public void AddArmor(float amount)
     {
         if(currentArmor + amount > 100.0f)
         {
@@ -45,13 +45,13 @@ public class PlayerHealth : MonoBehaviour
 
     void ArmorUIChange(float armorValue)
     {
-        _armorbar.fillAmount = armorValue;
+        _armorbar.fillAmount = (armorValue / 100.0f);
         armorTextUI.text = armorValue.ToString();
     }
     //updates health UI
     void HealthUIChange(float healthValue)
     {
-        _healthbar.fillAmount = healthValue;
+        _healthbar.fillAmount = (healthValue / 100.0f);
         healthTextUI.text = healthValue.ToString();
     }
     public void TakeDamage(float amount)
