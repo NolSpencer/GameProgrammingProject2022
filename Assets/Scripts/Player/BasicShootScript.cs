@@ -21,6 +21,7 @@ public class BasicShootScript : MonoBehaviour
     RaycastHit shootyHit;
     AudioSource gunAudio;
     int shootableMask;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +29,13 @@ public class BasicShootScript : MonoBehaviour
         shootableMask = LayerMask.GetMask("Shootable");
         currMag = magSize;
         gunAudio = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         timer += Time.deltaTime;
         if (Input.GetButton("Fire1") && timer >= shotInterval && reloadTimer == 0f) //Use of "Fire1" instead of "LeftClick" (or whatever it is on unity) makes it so we can play this game on a console, in theory
         {
