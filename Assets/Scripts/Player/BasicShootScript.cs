@@ -26,6 +26,7 @@ public class BasicShootScript : MonoBehaviour
     RaycastHit shootyHit;
     AudioSource gunAudio;
     int shootableMask;
+    
 
     // Start is called before the first frame update
     void Start()

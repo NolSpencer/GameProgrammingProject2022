@@ -98,6 +98,9 @@ namespace StarterAssets
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
 
+        Animator anim;
+        public Transform gunPos;
+
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
         private PlayerInput _playerInput;
 #endif
@@ -125,6 +128,7 @@ namespace StarterAssets
 
         private void Awake()
         {
+            anim = GetComponent<Animator>();
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -154,6 +158,7 @@ namespace StarterAssets
 
         private void Update()
         {
+            gunPos = anim.GetBoneTransform(HumanBodyBones.RightHand);
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
