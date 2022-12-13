@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class PlayerHealth : MonoBehaviour
     public float startingHealth = 100;
     public float currentHealth;
     public float currentArmor = 0;
+    public int currentCoins = 0;
 
     public Text armorTextUI;
     public Text healthTextUI;
+    public TMP_Text coins;
     script_movement movement;
     Animator anim;
     bool isDead;
@@ -29,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         HealthUIChange(currentHealth);
         ArmorUIChange(currentArmor);
+        coins.text = "Coins " + currentCoins.ToString();
     }
     public void AddArmor(float amount)
     {
@@ -41,6 +45,24 @@ public class PlayerHealth : MonoBehaviour
             currentArmor += amount;
         }
         
+    }
+
+    public void AddHealth(float amount)
+    {
+        if (currentHealth + amount > 100.0f)
+        {
+            currentHealth = 100.0f;
+        }
+        else
+        {
+            currentHealth += amount;
+        }
+
+    }
+
+    public void CollectCoins(int amount)
+    {
+        currentCoins += amount;
     }
 
     void ArmorUIChange(float armorValue)

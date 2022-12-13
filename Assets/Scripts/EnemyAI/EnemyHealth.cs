@@ -6,8 +6,12 @@ public class EnemyHealth : MonoBehaviour
 {
     public float startingHealth = 100;
     public float currentHealth;
+    public GameObject coin;
+    public GameObject healthPack;
     Animator anim;
     bool isDead;
+    float dropTimer;
+    public int drop;
 
 
     void Update()
@@ -15,12 +19,28 @@ public class EnemyHealth : MonoBehaviour
         //THIS IS TO TEST THE DEATH 
         if (Input.GetKeyDown(KeyCode.M))
             Death();
+        if (dropTimer > 0f)
+        {
+            dropTimer -= Time.deltaTime;
+        }
+        else if (dropTimer <= 0f && isDead)
+        {
+            if (drop <= 2)
+            {
+                Instantiate(healthPack, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+            }
+            else if (drop >= 3 && drop <= 6)
+            {
+                Instantiate(coin, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+            }
+        }
        
     }
     void Awake()
     {
         anim = GetComponent<Animator>();
         currentHealth = startingHealth;
+        drop = Random.Range(1, 10);
     }
     public void TakeDamage(float damage, Vector3 hitPoint)
     {
@@ -41,8 +61,9 @@ public class EnemyHealth : MonoBehaviour
     }
     void Death()
     {
-        isDead = true;
         anim.SetBool("Death", isDead);// should trigger death animation# DOES NOT WORK
+        dropTimer = 2.9f;
         Destroy(gameObject, 3f);//deletes enemy corpse after 3 seconds# WORKS
+        isDead = true;
     }
 }

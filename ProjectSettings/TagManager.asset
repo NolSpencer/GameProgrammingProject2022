@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - CinemachineTarget
+  - Spawner
+  - HealthPack
+  - Coin
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - 
   - Shootable
   - UI 2
-  - 
+  - NoGlobalLight
   - 
   - 
   - 
