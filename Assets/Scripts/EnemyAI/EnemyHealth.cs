@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     float dropTimer;
     public int drop;
+    AudioSource damageSound;
 
 
     void Update()
@@ -41,6 +42,7 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = startingHealth;
         drop = Random.Range(1, 10);
+        damageSound = GetComponent<AudioSource>();
     }
     public void TakeDamage(float damage, Vector3 hitPoint)
     {
@@ -51,7 +53,7 @@ public class EnemyHealth : MonoBehaviour
 
         // Reduce the current health by the amount of damage sustained.
         currentHealth -= damage;
-
+        damageSound.Play();
         // If the current health is less than or equal to zero
         if (currentHealth <= 0)
         {
