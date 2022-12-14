@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 394a273b52dab26408317e11ab10d91a, type: 3}
-  m_Name: Weapon Example
+  m_Name: Rate of Fire
   m_EditorClassIdentifier: 
-  title: A Weapon
-  description: This will be a brand new weapon
+  title: + Rate of Fire
+  description: Upgrades RoF and magsize and decreases damage
   baseCost: 75
