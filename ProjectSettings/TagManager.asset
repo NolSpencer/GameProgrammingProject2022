@@ -9,6 +9,7 @@ TagManager:
   - Spawner
   - HealthPack
   - Coin
+  - Gun
   layers:
   - Default
   - TransparentFX
