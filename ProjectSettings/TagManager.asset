@@ -10,6 +10,7 @@ TagManager:
   - HealthPack
   - Coin
   - Gun
+  - HUD
   layers:
   - Default
   - TransparentFX
