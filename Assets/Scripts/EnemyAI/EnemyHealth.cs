@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
         spwn = GameObject.FindGameObjectWithTag("Spawner");
         damageSound = GetComponent<AudioSource>();
     }
-    public void TakeDamage(float damage, Vector3 hitPoint)
+    public void TakeDamage(float damage)
     {
         // If the enemy is dead
         if (isDead)

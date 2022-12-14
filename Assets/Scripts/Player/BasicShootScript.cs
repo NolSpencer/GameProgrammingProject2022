@@ -5,7 +5,7 @@ using TMPro;
 
 public class BasicShootScript : MonoBehaviour
 {
-    public int[] damagePerShot = new int[] { 35, 25, 10 };
+    public float[] damagePerShot = new float[] { 35f, 25f, 10f };
     public int[] magSize = new int[] { 12, 30, 60 };
     public float[] shotInterval = new float[] { 0.7f, 0.1f, 0.05f }; //Can be found by dividing 60 by desired rpm of weapon
     public float reloadSpeed = 3f; //Time it takes to reload
@@ -108,7 +108,7 @@ public class BasicShootScript : MonoBehaviour
                 EnemyHealth enmHealth = shootyHit.collider.GetComponentInParent<EnemyHealth>();
                 if (enmHealth != null)
                 {
-                    enmHealth.TakeDamage(damagePerShot[weaponNum], shootyHit.collider.transform.position); //make enemy take damage
+                    enmHealth.TakeDamage(damagePerShot[weaponNum]); //make enemy take damage
                     Instantiate(enemShot, shootyHit.point, shootyHit.collider.transform.rotation);
                 }
             }
