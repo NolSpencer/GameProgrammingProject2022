@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     public int currentCoins = 0;
     float respawnTimer = 0f;
 
+    public AudioSource playerAudio;
     public Text armorTextUI;
     public Text healthTextUI;
     public TMP_Text coins;
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         movement = GetComponent<script_movement>();
         gun = GameObject.FindGameObjectWithTag("Gun");
+        playerAudio = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -101,6 +103,7 @@ public class PlayerHealth : MonoBehaviour
                 carryoverDamage = System.Math.Abs(currentArmor - amount);
                 currentArmor = 0;
                 currentHealth -= amount;
+                playerAudio.Play();
             }
             else
             {
