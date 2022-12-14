@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject coin;
     public GameObject healthPack;
     Animator anim;
+    GameObject spwn;
     bool isDead;
     float dropTimer;
     public int drop;
@@ -23,15 +24,17 @@ public class EnemyHealth : MonoBehaviour
         {
             dropTimer -= Time.deltaTime;
         }
-        else if (dropTimer <= 0f && isDead)
+        else if (dropTimer < 0f && isDead)
         {
             if (drop <= 2)
             {
                 Instantiate(healthPack, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+                dropTimer = 0f;
             }
             else if (drop >= 3 && drop <= 6)
             {
                 Instantiate(coin, transform.position + new Vector3(0, 0.5f, 0), transform.rotation);
+                dropTimer = 0f;
             }
         }
        
@@ -41,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = startingHealth;
         drop = Random.Range(1, 10);
+        spwn = GameObject.FindGameObjectWithTag("Spawner");
     }
     public void TakeDamage(float damage, Vector3 hitPoint)
     {
@@ -65,5 +69,6 @@ public class EnemyHealth : MonoBehaviour
         dropTimer = 2.9f;
         Destroy(gameObject, 3f);//deletes enemy corpse after 3 seconds# WORKS
         isDead = true;
+        spwn.GetComponent<Spawner>().EnemyKilled();
     }
 }
