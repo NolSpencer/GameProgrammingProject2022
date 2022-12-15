@@ -9,7 +9,7 @@ public class EnemyHealth : MonoBehaviour
     public GameObject coin;
     public GameObject healthPack;
     Animator anim;
-    bool isDead;
+    bool isDead = false;
     float dropTimer;
     public int drop;
     AudioSource damageSound;
@@ -63,9 +63,10 @@ public class EnemyHealth : MonoBehaviour
     }
     void Death()
     {
+        isDead = true;
         anim.SetBool("Death", isDead);// should trigger death animation# DOES NOT WORK
         dropTimer = 2.9f;
         Destroy(gameObject, 3f);//deletes enemy corpse after 3 seconds# WORKS
-        isDead = true;
+        
     }
 }
