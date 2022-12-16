@@ -19,8 +19,10 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         if (enemyHealth.isDead == false)
             nav.SetDestination(player.position);
+        else
+            return;
     }
 }
