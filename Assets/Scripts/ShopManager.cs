@@ -26,6 +26,10 @@ public class ShopManager : MonoBehaviour
     private void Update()
     {
         coins = playerHealth.currentCoins;
+        if (shootScript.weaponNum == 2)
+        {
+            shopPanelsGO[3].SetActive(false);
+        }
     }
 
     //this function only serves the purpose of generating coins when we don't have the option to in game yet
@@ -52,8 +56,7 @@ public class ShopManager : MonoBehaviour
     {
         if (coins >= shopItemsSO[btnNo].baseCost)
         {
-            coins = coins - shopItemsSO[btnNo].baseCost;
-            playerHealth.currentCoins = -shopItemsSO[btnNo].baseCost;
+            playerHealth.currentCoins -= shopItemsSO[btnNo].baseCost;
             coinUI.text = "Coins: " + coins.ToString();
             CheckPurchaseable();
             //Unlock Item here
@@ -69,12 +72,13 @@ public class ShopManager : MonoBehaviour
                     playerHealth.AddArmor(100.0f);
                     break;
                 case 3: //Rate of Fire
+                    shootScript.weaponNum++;
                     break;
-                case 4: //AR
+                /*case 4: //AR
                     
                     break;
                 case 5: //LMG
-                    break;
+                    break;*/
                 default:
                     break;
             }

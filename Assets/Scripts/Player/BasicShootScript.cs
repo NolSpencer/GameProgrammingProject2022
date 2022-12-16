@@ -10,7 +10,7 @@ public class BasicShootScript : MonoBehaviour
     public float[] shotInterval = new float[] { 0.7f, 0.1f, 0.05f }; //Can be found by dividing 60 by desired rpm of weapon
     public float reloadSpeed = 3f; //Time it takes to reload
     public float range = 50f;
-    private int weaponNum = 0;
+    public int weaponNum = 0;
     // ^^^Would like for these variables to change based on the weapon player is using, when we implement them. Maybe with new script?
     public bool debug;
     public TMP_Text bulletsInMag;

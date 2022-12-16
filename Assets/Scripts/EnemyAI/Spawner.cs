@@ -11,7 +11,7 @@ public class Spawner : MonoBehaviour
     public bool waveActive = true;
     int waveSize = 8;
     int maxEnemies = 3;
-    int currEnemies = 2;
+    int currEnemies = 1;
     int currWave = 1;
     public int enemiesDefeated = 0;
     float betweenWaveTimer = 0;

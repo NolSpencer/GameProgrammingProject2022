@@ -70,7 +70,7 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         anim.SetBool("Death", isDead);// should trigger death animation# DOES NOT WORK
         dropTimer = 2.9f;
-        Destroy(gameObject, 3f);//deletes enemy corpse after 3 seconds# WORKS
+        Destroy(gameObject, 1.5f);//deletes enemy corpse after 1.3 seconds# WORKS
         spwn.GetComponent<Spawner>().EnemyKilled();
     }
 }

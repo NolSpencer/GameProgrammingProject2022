@@ -480,7 +480,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.016828472
+  m_Radius: 0.02082847
   m_Center: {x: -0.0000000018694624, y: 0.01153476, z: 0.0016601793}
 --- !u!65 &1413073531
 BoxCollider:
@@ -491,7 +491,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012962366582}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.021, z: 0.02}
   m_Center: {x: -0.0000000018694621, y: 0.011538761, z: 0.0016601786}
@@ -720,6 +720,7 @@ MonoBehaviour:
   currentHealth: 0
   coin: {fileID: 1516206009078322, guid: 4eca7a8ef879cfb41b294a8c0d69ea58, type: 3}
   healthPack: {fileID: 1465207541995380, guid: a5ad3b53c234b9040b754b2c2c9d8fc6, type: 3}
+  isDead: 0
   drop: 0
 --- !u!195 &2101445246
 NavMeshAgent:
