@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Rate of Fire+
   description: Upgrades RoF and magsize and decreases damage
-  baseCost: 75
+  baseCost: 4000

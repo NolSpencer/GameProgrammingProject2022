@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Used Armor
   description: +50 Shield
-  baseCost: 50
+  baseCost: 2000

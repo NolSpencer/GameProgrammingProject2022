@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Rusty Armor
   description: +25 Shield
-  baseCost: 25
+  baseCost: 1000
