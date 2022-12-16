@@ -25,7 +25,7 @@ public class SimpleCollectibleScript : MonoBehaviour {
 		if (other.tag == "Player") {
 			Collect();
 			if (CompareTag("Coin")) {
-				other.GetComponent<PlayerHealth>().CollectCoins(10);
+				other.GetComponent<PlayerHealth>().CollectCoins(100);
 				gameObject.SetActive(false);
 			}
 			else if (CompareTag("HealthPack"))

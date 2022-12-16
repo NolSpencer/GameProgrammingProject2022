@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth;
     public float currentArmor = 0;
     public int currentCoins = 0;
+    float respawnTimer = 0f;
 
     public AudioSource playerAudio;
     public Text armorTextUI;
@@ -20,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     public TMP_Text coins;
     script_movement movement;
     Animator anim;
+    GameObject gun;
     bool isDead;
     
     // Start is called before the first frame update
@@ -28,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         movement = GetComponent<script_movement>();
+        gun = GameObject.FindGameObjectWithTag("Gun");
         playerAudio = GetComponent<AudioSource>();
     }
     private void Update()
@@ -35,6 +40,15 @@ public class PlayerHealth : MonoBehaviour
         HealthUIChange(currentHealth);
         ArmorUIChange(currentArmor);
         coins.text = "Coins " + currentCoins.ToString();
+
+        if (respawnTimer > 0f) 
+        {
+            respawnTimer -= Time.deltaTime;
+        }
+        if (Input.GetKeyDown("n") && isDead && respawnTimer <= 0f)
+        {
+            Restart();
+        }
     }
     public void AddArmor(float amount)
     {
@@ -96,7 +110,7 @@ public class PlayerHealth : MonoBehaviour
                 currentArmor -= amount;
             }
         }
-        else
+        else if (currentArmor <= 0)
         {
             currentHealth -= amount;
         }
@@ -109,7 +123,14 @@ public class PlayerHealth : MonoBehaviour
     void Death()
     {
         isDead = true;
-       // anim.SetTrigger("Die");
-       //we dont have a playable character with a death yet
+        anim.SetTrigger("Die");
+        respawnTimer = 4.5f;
+        gameObject.GetComponent<PlayerInput>().enabled = false;
+        gun.GetComponent<BasicShootScript>().enabled = false;
+    }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
