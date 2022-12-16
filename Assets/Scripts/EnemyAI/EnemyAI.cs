@@ -7,17 +7,20 @@ public class EnemyAI : MonoBehaviour
 {
     Transform player;
     NavMeshAgent nav;
-
+    EnemyHealth enemyHealth;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(player.position);
+        
+        if (enemyHealth.isDead == false)
+            nav.SetDestination(player.position);
     }
 }
