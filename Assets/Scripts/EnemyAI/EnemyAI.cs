@@ -23,6 +23,6 @@ public class EnemyAI : MonoBehaviour
         if (enemyHealth.isDead == false)
             nav.SetDestination(player.position);
         else
-            return;
+            nav.SetDestination(transform.position);
     }
 }
