@@ -18,8 +18,12 @@ public class Spawner : MonoBehaviour
     public TMP_Text waveTMR;
     public TMP_Text wave;
     public TMP_Text enemiesLeft;
+    AudioSource audioSource;
 
-
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     void Start()
     {
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
@@ -38,6 +42,8 @@ public class Spawner : MonoBehaviour
                 waveActive = false;
                 CancelInvoke();
                 waveTMR.enabled = true;
+                audioSource.Play();
+
             }
         }
         else if (betweenWaveTimer <= 0 && !waveActive)

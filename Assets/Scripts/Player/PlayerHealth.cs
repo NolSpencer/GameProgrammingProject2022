@@ -16,8 +16,9 @@ public class PlayerHealth : MonoBehaviour
     public float currentArmor = 0;
     public int currentCoins = 0;
     float respawnTimer = 0f;
+   
 
-    public AudioSource playerAudio;
+    AudioSource playerAudio;
     public Text armorTextUI;
     public Text healthTextUI;
     public TMP_Text coins;
@@ -98,12 +99,13 @@ public class PlayerHealth : MonoBehaviour
         float carryoverDamage;
         if (currentArmor > 0)
         {
+            playerAudio.Play();
             if (currentArmor - amount < 0)
             {
                 carryoverDamage = System.Math.Abs(currentArmor - amount);
                 currentArmor = 0;
                 currentHealth -= amount;
-                playerAudio.Play();
+               
             }
             else
             {
